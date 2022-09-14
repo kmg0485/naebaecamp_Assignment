@@ -17,19 +17,21 @@ try:
             return f"나누기 : {self.a / self.b}" 
         
     calc = Calc()   
-    calc.set_number(20, 0)
+    calc.set_number(20, ㅁㅇㄴㄹㄹㅇㅁㄴㄹㅁㄴ)
+    
+    print(calc.plus())
+    print(calc.minus())
+    print(calc.multiple())
+    print(calc.divide()) 
 
     
 except ZeroDivisionError: 
     print("0으로는 나눌수 없습니다.")
     exit()
-
-
-print(calc.plus())
-print(calc.minus())
-print(calc.multiple())
-print(calc.divide()) 
-
+    
+except NameError: 
+    print("숫자만 입력 가능합니다.")
+    exit()
 
 #################################################
 
