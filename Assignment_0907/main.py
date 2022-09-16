@@ -1,3 +1,6 @@
+"""
+
+
 from random import randint
 import time
 from datetime import datetime
@@ -73,3 +76,114 @@ while baseball:
                     baseball = False
                 else:
                     print(f"\n {strike} 스트라이크, {ball} 볼, {out} 아웃")
+"""
+
+
+
+"""
+import random
+import time
+from datetime import datetime, timedelta
+print("원하시는 자리 수를 입력하세요")
+n = int(input())
+start_time = time.time()
+def baseball_number_generator(n):
+    result = set()
+    if n < 1:
+        print("1이상의 값을 입력해주세요")
+        return False
+    while len(result)<n:
+        result.add(random.randint(1,9))
+    result = list(result)
+    random.shuffle(result)
+    return result
+baseball_numbers = baseball_number_generator(n)
+print(baseball_numbers)
+def baseball_game():
+    try_count = 0
+    out_count = 0
+    strike_count = 0
+    ball_count = 0
+    print(f"처음에 입력하셨던 {n} 자리수만큼 한자리씩 띄워서 숫자를 입력하세요")
+    try:
+        while True:
+            if strike_count < 3:
+                player_numbers = list(map(int, input().split()))
+                try_count +=1
+                strike_count = 0
+                ball_count = 0
+                out_count = 0
+                for i in range(len(player_numbers)):
+                    if player_numbers[i] in baseball_numbers:
+                        if player_numbers[i] == baseball_numbers[i]:
+                            strike_count += 1
+                        else :
+                            ball_count += 1
+                    else:
+                        out_count += 1
+                print(f"{try_count}번 시도했습니다. 스트라이크 : {strike_count}  볼 : {ball_count} 아웃 : {out_count}")
+            else:
+                end_time = time.time()
+                print(f"정답을 맞추기까지 소요된 시간 : {end_time-start_time:.0f}초")
+                now = datetime.now()
+                string_datimetime = datetime.strftime(now, "%y%m%d %H:%M:%S")
+                print(string_datimetime)
+                print(baseball_numbers)
+                print("게임성공")
+                return True
+    except:
+        print("게임 종료")
+baseball_game()
+"""
+import random
+import time
+from datetime import datetime
+
+
+def main():
+    length = int(input("자릿수를 입력해주세요 : "))
+    random_numbers = set()
+
+    while len(random_numbers) < length:
+        random_numbers.add(random.randint(0, 9))
+
+    random_numbers = list(random_numbers)
+    random.shuffle(random_numbers)
+
+    start_time = time.time()
+    try_count = 0
+
+    while True:
+        input_number = input("값을 입력해주세요 (종료 - exit): ")
+        if input_number == "exit":
+            return
+        
+        try_count += 1
+        out_count = 0
+
+        ball_count = 0
+        strike_count = 0
+
+        for i, v in enumerate(input_number):
+            v = int(v)
+            if v not in random_numbers: # 포함돼있지 않은 경우
+                out_count += 1
+                
+            else: # 포함돼 있는 경우
+                if random_numbers[i] == v:
+                    strike_count += 1
+                else:
+                    ball_count += 1
+                    
+        if strike_count == length:
+            print("########################")
+            print("정답입니다!!")
+            print(f"소요 시간 : {time.time() - start_time:.2f}")
+            print(f"클리어 일자 : {datetime.now()}")
+            print(f"도전 횟수 : {try_count}")
+            print("########################")
+            return
+        
+        print(f"{ball_count}볼 {strike_count}스트라이크 {out_count}아웃")
+
+main()
