@@ -1,5 +1,5 @@
 """
-
+#내가 짜본 코드
 
 from random import randint
 import time
@@ -81,6 +81,8 @@ while baseball:
 
 
 """
+#다른 분이 짠 코드
+
 import random
 import time
 from datetime import datetime, timedelta
@@ -134,7 +136,10 @@ def baseball_game():
     except:
         print("게임 종료")
 baseball_game()
+
 """
+
+#튜터님이 짠 코드
 import random
 import time
 from datetime import datetime
